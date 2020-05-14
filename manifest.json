@@ -112,7 +112,7 @@
                     "fr": "Utilisez une valeur hexadecimale (6 chiffres sans # devant)"
                 },
                 "example": "D17732",
-				"default": "D17732"
+				"default": "328cc1"
             }
         ]
     }

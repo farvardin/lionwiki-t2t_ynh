@@ -218,14 +218,18 @@ ynh_replace_string --match_string="__YNH_LABEL__" --replace_string="$wiki"    --
 if echo "$color" | grep -q -E '[A-Fa-f0-9]{6}'
 then
 	ynh_replace_string --match_string="__YNH_COLOR__" --replace_string="$color"    --target_file="$final_path/templates/minimaxing/minimaxing.less"
+	ynh_replace_string --match_string="__YNH_COLOR__" --replace_string="$color"    --target_file="$final_path/templates/ggp/ggp.less"
 else
 	ynh_replace_string --match_string="__YNH_COLOR__" --replace_string="555555"    --target_file="$final_path/templates/minimaxing/minimaxing.less"
+	ynh_replace_string --match_string="__YNH_COLOR__" --replace_string="555555"    --target_file="$final_path/templates/ggp/ggp.less"
 fi
 
 # soon lessc will require the --js option
 # lessc --js $final_path/templates/minimaxing/minimaxing.less > $final_path/templates/minimaxing/minimaxing.css
 
 lessc $final_path/templates/minimaxing/minimaxing.less > $final_path/templates/minimaxing/minimaxing.css
+
+lessc $final_path/templates/ggp/ggp.less > $final_path/templates/ggp/ggp.css
 
 
 
@@ -326,6 +330,9 @@ chown -R root: $final_path
 # Wiki needs to write inside these folders. Make "Wiki" owner
 chown -R $app:root $final_path/var
 chown -R $app:root $final_path/templates
+
+# write everything, even config files, for pheditor:
+chown -R $app:root $final_path/
 
 # Allow access to public assets like style sheets
 find $final_path/templates -type f -print0 | xargs -0 chmod 0644
